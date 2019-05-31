@@ -1,0 +1,29 @@
+{
+  "name": "transferwise",
+  "version": "0.0.1",
+  "description": "A simple client for Transferwise's API written in Node JS (ES7)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/13pass/transferwise-client.git"
+  },
+  "keywords": [
+    "transferwise",
+    "api",
+    "client"
+  ],
+  "author": "Vincent HETRU",
+  "license": "Mozilla Public License 2.0",
+  "bugs": {
+    "url": "https://github.com/13pass/transferwise-client/issues"
+  },
+  "homepage": "https://github.com/13pass/transferwise-client#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "uuid": "^3.3.2"
+  }
+}

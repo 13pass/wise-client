@@ -52,7 +52,7 @@ const TwClient = new Transferwise(options);
   for (const balance of accounts[0].balances) {
     console.log(balance);
   }
-  let quote = await TwClient.getQuote({
+  let quote = await TwClient.createQuote({
     profile: profiles[0].id,
     source: 'EUR',
     target: 'GBP',

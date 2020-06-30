@@ -1,8 +1,10 @@
 # Transferwise API Client
+
 A simple client for Transferwise's API written in Node JS (ES7)
 Official docs are found [here](https://api-docs.transferwise.com);
 
 ## Installation
+
 To install simply use npm or clone repo:
 
 `npm install transferwise`
@@ -21,7 +23,7 @@ To init juste plug in your apiKey like so:
 const Transferwise = require('transferwise');
 
 const TwClient = new Transferwise({
-  apiKey: '01234567-890a-bcde-f012-3456789abcde'
+  apiKey: '01234567-890a-bcde-f012-3456789abcde',
 });
 ```
 
@@ -34,12 +36,12 @@ below an example of actions that can be achieved with this client:
 ### Example using a sandbox account
 
 ```javascript
-const config = require('dotenv').config()
+const config = require('dotenv').config();
 const Transferwise = require('transferwise');
 
 const options = {
   apiKey: config.parsed.TW_API_KEY,
-  sandbox: true
+  sandbox: true,
 };
 
 const TwClient = new Transferwise(options);
@@ -47,25 +49,28 @@ const TwClient = new Transferwise(options);
 (async () => {
   let profiles = await TwClient.getProfiles();
   console.log(profiles);
-  let accounts = await TwClient.getBorderlessAccounts(profiles[0].id);
-  console.log(accounts[0]);
+  const profileId = profiles[0].id;
+  let accounts = await TwClient.getBorderlessAccounts({
+    profileId,
+  });
+  let borderlessAccountId = accounts[0].id;
   for (const balance of accounts[0].balances) {
     console.log(balance);
   }
   let quote = await TwClient.createQuote({
-    profile: profiles[0].id,
+    profile: profileId,
     source: 'EUR',
     target: 'GBP',
     sourceAmount: '19.84',
     rateType: 'FIXED',
-    type: 'BALANCE_CONVERSION'
+    type: 'BALANCE_CONVERSION',
   });
   console.log(quote);
   if (quote.createdTime) {
     if (quote.rate > 0.85) {
       let conversionTransaction = await TwClient.convertCurrencies({
-        borderlessAccountId: accounts[0].id,
-        quoteId: quote.id
+        borderlessAccountId,
+        quoteId: quote.id,
       });
       console.log(conversionTransaction);
     }

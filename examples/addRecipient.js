@@ -1,9 +1,9 @@
-const config = require('dotenv').config()
+const config = require('dotenv').config();
 const Transferwise = require('transferwise');
 
 const options = {
-	apiKey: config.parsed.TW_API_KEY,
-  //sandbox: true
+  apiKey: config.parsed.TW_API_KEY,
+  //sandbox: true,
 };
 
 const TwClient = new Transferwise(options);
@@ -15,17 +15,16 @@ const TwClient = new Transferwise(options);
   let recipientAccount = await TwClient.createRecipientAccount({
     profile: profileId,
     accountHolderName: 'Recipient user name',
-    currency: 'EUR', 
-    type: 'email', 
-    details: { 
-      email: 'recipient@mail.com'
-    } 
+    currency: 'EUR',
+    type: 'email',
+    details: {
+      email: 'recipient@mail.com',
+    },
   });
   console.log(recipientAccount);
   let recipientAccounts = await TwClient.getRecipientAccounts({
     profile: profileId,
-    currency: 'EUR' 
+    currency: 'EUR',
   });
   console.log(recipientAccounts);
 })();
-

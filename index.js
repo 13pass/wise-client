@@ -6,26 +6,26 @@ const transferwise = function (config) {
     this.apiKey = config.apiKey;
     this.request = request;
 
-    this.cancelTransfer = function (transferId) {
-      return request('PUT', `/transfers/${transferId}/cancel`);
+    this.cancelTransfer = function ({transferId}) {
+      return request({method: 'PUT', path: `/transfers/${transferId}/cancel`});
     };
     this.convertCurrencies = function ({borderlessAccountId, quoteId, uuid}) {
       if (!uuid) {
         uuid = uuidv4();
       }
-      return request(
-        'POST',
-        `/borderless-accounts/${borderlessAccountId}/conversions`,
-        {
+      return request({
+        data: {
           quoteId,
         },
-        {
+        headers: {
           'X-idempotence-uuid': uuid,
-        }
-      );
+        },
+        method: 'POST',
+        path: `/borderless-accounts/${borderlessAccountId}/conversions`,
+      });
     };
-    this.createQuote = function (data) {
-      return request('POST', `/quotes`, data);
+    this.createQuote = function ({data}) {
+      return request({data, method: 'POST', path: `/quotes`});
     };
     this.createRecipientAccount = function ({
       currency = 'GBP',
@@ -35,13 +35,17 @@ const transferwise = function (config) {
       accountHolderName,
       details,
     }) {
-      return request('POST', `/accounts`, {
-        currency,
-        type,
-        profile,
-        ownedByCustomer,
-        accountHolderName,
-        details,
+      return request({
+        data: {
+          currency,
+          type,
+          profile,
+          ownedByCustomer,
+          accountHolderName,
+          details,
+        },
+        method: 'POST',
+        path: `/accounts`,
       });
     };
     this.createTransfer = function ({
@@ -53,35 +57,77 @@ const transferwise = function (config) {
       if (!customerTransactionId) {
         customerTransactionId = uuidv4();
       }
-      return request('POST', `/transfers`, {
-        targetAccount,
-        quote,
-        customerTransactionId,
-        details,
+      return request({
+        data: {
+          targetAccount,
+          quote,
+          customerTransactionId,
+          details,
+        },
+        method: 'POST',
+        path: `/transfers`,
       });
     };
-    this.deleteRecipientAccount = function (accountId) {
-      return request('DELETE', `/accounts/${accountId}`);
+    this.deleteRecipientAccount = function ({accountId}) {
+      return request({method: 'DELETE', path: `/accounts/${accountId}`});
     };
     this.fundTransfer = function ({transferId, type = 'BALANCE'}) {
-      return request('POST', `/transfers/${transferId}/payments`, {
-        type,
+      return request({
+        data: {
+          type,
+        },
+        method: 'POST',
+        path: `/transfers/${transferId}/payments`,
       });
     };
-    this.getBorderlessAccounts = function (profileId) {
-      return request('GET', `/borderless-accounts?profileId=${profileId}`);
+    this.getBorderlessAccounts = function ({profileId, versionPrefix = 'v2'}) {
+      return request({
+        method: 'GET',
+        path: `/borderless-accounts?profileId=${profileId}`,
+        versionPrefix,
+      });
     };
-    this.getQuote = function (quoteId) {
-      return request('GET', `/quotes/${quoteId}`);
+    this.getQuote = function ({quoteId}) {
+      return request({method: 'GET', path: `/quotes/${quoteId}`});
     };
-    this.getProfiles = function () {
-      return request('GET', `/profiles`);
+    this.getProfiles = function ({versionPrefix = 'v2'} = {}) {
+      return request({method: 'GET', path: `/profiles`, versionPrefix});
     };
-    this.getRecipientAccounts = function ({profile, currency}) {
-      return request(
-        'GET',
-        `/accounts?profile=${profile}&currency=${currency}`
-      );
+    this.getProfileActivities = function ({
+      limit = 50,
+      profileId,
+      versionPrefix = 'v1',
+    } = {}) {
+      return request({
+        method: 'GET',
+        path: `/profiles/${profileId}/activities/?size=${limit}`,
+        versionPrefix,
+      });
+    };
+    this.getProfilePermissions = function ({
+      profileId,
+      versionPrefix = 'v1',
+    } = {}) {
+      return request({
+        method: 'GET',
+        path: `/permissions/${profileId}`,
+        versionPrefix,
+      });
+    };
+    this.getRecipientAccounts = function ({
+      currency,
+      profile,
+      versionPrefix = 'v2',
+    }) {
+      let path = `/accounts?profile=${profile}`;
+      if (currency) {
+        path = `${path}&currency=${currency}`;
+      }
+      return request({
+        method: 'GET',
+        path,
+        versionPrefix,
+      });
     };
   } catch (err) {
     console.error(err);

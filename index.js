@@ -1,54 +1,55 @@
-const transferwise = function(config){
+const transferwise = function (config) {
   const uuidv4 = require('uuid/v4');
-	const request = require('./lib/request')(config);
+  const request = require('./lib/request')(config);
 
   try {
     this.apiKey = config.apiKey;
     this.request = request;
 
-    this.cancelTransfer = function(transferId){
+    this.cancelTransfer = function (transferId) {
       return request('PUT', `/transfers/${transferId}/cancel`);
     };
-    this.convertCurrencies = function({
-      borderlessAccountId,
-      quoteId,
-      uuid
-    }){
+    this.convertCurrencies = function ({borderlessAccountId, quoteId, uuid}) {
       if (!uuid) {
         uuid = uuidv4();
       }
-      return request('POST', `/borderless-accounts/${borderlessAccountId}/conversions`, {
-        quoteId 
-      }, {
-        'X-idempotence-uuid': uuid
-      });
+      return request(
+        'POST',
+        `/borderless-accounts/${borderlessAccountId}/conversions`,
+        {
+          quoteId,
+        },
+        {
+          'X-idempotence-uuid': uuid,
+        }
+      );
     };
-    this.createQuote = function(data){
+    this.createQuote = function (data) {
       return request('POST', `/quotes`, data);
     };
-    this.createRecipientAccount = function({
-      currency = 'GBP', 
-      type = 'sort_code', 
+    this.createRecipientAccount = function ({
+      currency = 'GBP',
+      type = 'sort_code',
       profile,
-      ownedByCustomer = false, 
+      ownedByCustomer = false,
       accountHolderName,
-      details
-    }){
+      details,
+    }) {
       return request('POST', `/accounts`, {
-        currency, 
-        type, 
+        currency,
+        type,
         profile,
-        ownedByCustomer, 
+        ownedByCustomer,
         accountHolderName,
-        details 
+        details,
       });
     };
-    this.createTransfer = function({
+    this.createTransfer = function ({
       targetAccount,
       quote,
       customerTransactionId,
-      details 
-    }){
+      details,
+    }) {
       if (!customerTransactionId) {
         customerTransactionId = uuidv4();
       }
@@ -56,34 +57,31 @@ const transferwise = function(config){
         targetAccount,
         quote,
         customerTransactionId,
-        details
+        details,
       });
     };
-    this.deleteRecipientAccount = function(accountId){
+    this.deleteRecipientAccount = function (accountId) {
       return request('DELETE', `/accounts/${accountId}`);
     };
-    this.fundTransfer = function({
-      transferId,
-      type = 'BALANCE'
-    }){
+    this.fundTransfer = function ({transferId, type = 'BALANCE'}) {
       return request('POST', `/transfers/${transferId}/payments`, {
-        type
+        type,
       });
     };
-    this.getBorderlessAccounts = function(profileId){
+    this.getBorderlessAccounts = function (profileId) {
       return request('GET', `/borderless-accounts?profileId=${profileId}`);
     };
-    this.getQuote = function(quoteId){
+    this.getQuote = function (quoteId) {
       return request('GET', `/quotes/${quoteId}`);
     };
-    this.getProfiles = function(){
+    this.getProfiles = function () {
       return request('GET', `/profiles`);
     };
-    this.getRecipientAccounts = function({
-      profile,
-      currency
-    }){
-      return request('GET', `/accounts?profile=${profile}&currency=${currency}`);
+    this.getRecipientAccounts = function ({profile, currency}) {
+      return request(
+        'GET',
+        `/accounts?profile=${profile}&currency=${currency}`
+      );
     };
   } catch (err) {
     console.error(err);

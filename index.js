@@ -6,10 +6,19 @@ const transferwise = function (config) {
     this.apiKey = config.apiKey;
     this.request = request;
 
-    this.cancelTransfer = function ({transferId}) {
-      return request({method: 'PUT', path: `/transfers/${transferId}/cancel`});
+    this.cancelTransfer = function ({transferId, versionPrefix = 'v1'}) {
+      return request({
+        method: 'PUT',
+        path: `/transfers/${transferId}/cancel`,
+        versionPrefix,
+      });
     };
-    this.convertCurrencies = function ({borderlessAccountId, quoteId, uuid}) {
+    this.convertCurrencies = function ({
+      borderlessAccountId,
+      quoteId,
+      uuid,
+      versionPrefix = 'v1',
+    }) {
       if (!uuid) {
         uuid = uuidv4();
       }
@@ -22,37 +31,46 @@ const transferwise = function (config) {
         },
         method: 'POST',
         path: `/borderless-accounts/${borderlessAccountId}/conversions`,
+        versionPrefix,
       });
     };
-    this.createQuote = function ({data}) {
-      return request({data, method: 'POST', path: `/quotes`});
+    this.createQuote = function ({data, versionPrefix = 'v1'}) {
+      return request({
+        data,
+        method: 'POST',
+        path: `/quotes`,
+        versionPrefix,
+      });
     };
     this.createRecipientAccount = function ({
-      currency = 'GBP',
-      type = 'sort_code',
-      profile,
-      ownedByCustomer = false,
       accountHolderName,
+      currency = 'GBP',
       details,
+      ownedByCustomer = false,
+      profile,
+      type = 'sort_code',
+      versionPrefix = 'v1',
     }) {
       return request({
         data: {
-          currency,
-          type,
-          profile,
-          ownedByCustomer,
           accountHolderName,
+          currency,
           details,
+          ownedByCustomer,
+          profile,
+          type,
+          versionPrefix,
         },
         method: 'POST',
         path: `/accounts`,
       });
     };
     this.createTransfer = function ({
-      targetAccount,
-      quote,
       customerTransactionId,
       details,
+      quote,
+      targetAccount,
+      versionPrefix = 'v1',
     }) {
       if (!customerTransactionId) {
         customerTransactionId = uuidv4();
@@ -66,18 +84,28 @@ const transferwise = function (config) {
         },
         method: 'POST',
         path: `/transfers`,
+        versionPrefix,
       });
     };
-    this.deleteRecipientAccount = function ({accountId}) {
-      return request({method: 'DELETE', path: `/accounts/${accountId}`});
+    this.deleteRecipientAccount = function ({accountId, versionPrefix = 'v1'}) {
+      return request({
+        method: 'DELETE',
+        path: `/accounts/${accountId}`,
+        versionPrefix,
+      });
     };
-    this.fundTransfer = function ({transferId, type = 'BALANCE'}) {
+    this.fundTransfer = function ({
+      transferId,
+      type = 'BALANCE',
+      versionPrefix = 'v1',
+    }) {
       return request({
         data: {
           type,
         },
         method: 'POST',
         path: `/transfers/${transferId}/payments`,
+        versionPrefix,
       });
     };
     this.getBorderlessAccounts = function ({profileId, versionPrefix = 'v2'}) {
@@ -87,8 +115,12 @@ const transferwise = function (config) {
         versionPrefix,
       });
     };
-    this.getQuote = function ({quoteId}) {
-      return request({method: 'GET', path: `/quotes/${quoteId}`});
+    this.getQuote = function ({quoteId, versionPrefix = 'v1'}) {
+      return request({
+        method: 'GET',
+        path: `/quotes/${quoteId}`,
+        versionPrefix,
+      });
     };
     this.getProfiles = function ({versionPrefix = 'v2'} = {}) {
       return request({method: 'GET', path: `/profiles`, versionPrefix});

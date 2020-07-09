@@ -47,7 +47,7 @@ const options = {
 const TwClient = new Transferwise(options);
 
 (async () => {
-  let profiles = await TwClient.getProfiles();
+  let profiles = await TwClient.getProfiles({});
   console.log(profiles);
   const profileId = profiles[0].id;
   let accounts = await TwClient.getBorderlessAccounts({
@@ -58,12 +58,14 @@ const TwClient = new Transferwise(options);
     console.log(balance);
   }
   let quote = await TwClient.createQuote({
-    profile: profileId,
-    source: 'EUR',
-    target: 'GBP',
-    sourceAmount: '19.84',
-    rateType: 'FIXED',
-    type: 'BALANCE_CONVERSION',
+    data: {
+      profile: profileId,
+      source: 'EUR',
+      target: 'GBP',
+      sourceAmount: '19.84',
+      rateType: 'FIXED',
+      type: 'BALANCE_CONVERSION',
+    },
   });
   console.log(quote);
   if (quote.createdTime) {

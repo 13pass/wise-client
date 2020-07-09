@@ -9,7 +9,7 @@ const options = {
 const TwClient = new Transferwise(options);
 
 (async () => {
-  let profiles = await TwClient.getProfiles();
+  let profiles = await TwClient.getProfiles({});
   console.log(profiles);
   let profileId = profiles[0].id;
   let recipientAccount = await TwClient.createRecipientAccount({

@@ -1,0 +1,91 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
+  },
+  "plugins": [],
+  "rules": {
+    "arrow-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "brace-style": [
+      2,
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "comma-dangle": ["error", "only-multiline"],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "curly": [2, "all"],
+    "eqeqeq": 1,
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jest/expect-expect": "off",
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "max-statements": ["warn", 70],
+    "no-async-promise-executor": "error",
+    "no-bitwise": 1,
+    "no-commonjs": "off",
+    "no-console": "off",
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-multi-spaces": "error",
+    "no-shadow": ["error"],
+    "no-unreachable": "error",
+    "no-var": 1,
+    "object-curly-spacing": ["error", "never"],
+    "one-var": 0,
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "require-atomic-updates": "off",
+    "semi": ["error", "always"],
+    "space-before-blocks": ["error", "always"],
+    "space-infix-ops": ["error"],
+    "space-in-parens": ["error", "never"]
+  }
+}

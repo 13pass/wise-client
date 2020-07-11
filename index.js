@@ -128,11 +128,30 @@ const transferwise = function (config) {
     this.getProfileActivities = function ({
       limit = 50,
       profileId,
+      since,
+      status,
+      until,
       versionPrefix = 'v1',
     } = {}) {
+      let path = `/profiles/${profileId}/activities/?size=${limit}`;
+      if (status) {
+        path = `${path}&status=${status}`;
+      }
+      if (since) {
+        if (since.length === 10) {
+          since = `${since}T00:00:00Z`;
+        }
+        path = `${path}&since=${since}`;
+      }
+      if (until) {
+        if (until.length === 10) {
+          until = `${until}T00:00:00Z`;
+        }
+        path = `${path}&until=${until}`;
+      }
       return request({
         method: 'GET',
-        path: `/profiles/${profileId}/activities/?size=${limit}`,
+        path,
         versionPrefix,
       });
     };

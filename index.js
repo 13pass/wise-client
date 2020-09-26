@@ -95,16 +95,17 @@ const transferwise = function (config) {
       });
     };
     this.fundTransfer = function ({
+      profileId,
       transferId,
       type = 'BALANCE',
-      versionPrefix = 'v1',
+      versionPrefix = 'v3',
     }) {
       return request({
         data: {
           type,
         },
         method: 'POST',
-        path: `/transfers/${transferId}/payments`,
+        path: `/profiles/${profileId}/transfers/${transferId}/payments`,
         versionPrefix,
       });
     };

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.2 - 2022-02-21
+
+- Correct README.md Usage part.
+
 ## 2.0.1 - 2022-02-21
 
 - Change the name of the package back to `transferwise` since `wise` is not available.

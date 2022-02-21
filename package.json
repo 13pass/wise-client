@@ -1,20 +1,36 @@
 {
-  "name": "transferwise",
+  "name": "wise",
   "version": "1.0.2",
   "description": "A simple client for Transferwise's API written in Node JS (ES7)",
-  "main": "index.js",
+  "main": "lib/Wise.js",
   "engines": {
-    "node": ">=8.6.0"
+    "node": "16",
+    "npm": "7"
+  },
+  "jest": {
+    "bail": false,
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "testEnvironment": "node",
+    "verbose": true,
+    "watchPathIgnorePatterns": [
+      "<rootDir>/data/",
+      "<rootDir>/docs/",
+      "<rootDir>/log/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/public/"
+    ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/13pass/transferwise-client.git"
   },
   "keywords": [
-    "transferwise",
+    "wise",
     "api",
     "client"
   ],
@@ -25,20 +41,20 @@
   },
   "homepage": "https://github.com/13pass/transferwise-client#readme",
   "dependencies": {
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.7",
-    "uuid": "^3.3.2"
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "eslint": "^7.3.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-jest": "^26.1.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
     "pretty-quick": "^2.0.1"
   },
   "husky": {
@@ -47,6 +63,7 @@
     }
   },
   "prettier": {
+    "arrowParens": "always",
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "es5"

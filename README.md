@@ -37,41 +37,38 @@ below an example of actions that can be achieved with this client:
 
 ```javascript
 const config = require('dotenv').config();
-const Transferwise = require('transferwise');
+const Wise = require('transferwise');
 
 const options = {
   apiKey: config.parsed.TW_API_KEY,
   sandbox: true,
 };
 
-const TwClient = new Transferwise(options);
+const wiseClient = new Wise(options);
 
 (async () => {
-  let profiles = await TwClient.getProfiles({});
+  let profiles = await wiseClient.getProfilesV2({});
   console.log(profiles);
   const profileId = profiles[0].id;
-  let accounts = await TwClient.getBorderlessAccounts({
+  let accounts = await wiseClient.getBorderlessAccounts({
     profileId,
   });
   let borderlessAccountId = accounts[0].id;
   for (const balance of accounts[0].balances) {
     console.log(balance);
   }
-  let quote = await TwClient.createQuote({
-    data: {
-      profile: profileId,
-      source: 'EUR',
-      target: 'GBP',
-      sourceAmount: '19.84',
-      rateType: 'FIXED',
-      type: 'BALANCE_CONVERSION',
-    },
+  let quote = await wiseClient.createQuoteV2({
+    profileId,
+    sourceCurrency: 'EUR',
+    targetCurrency: 'GBP',
+    targetAmount: 19.84,
+    payOut: 'BALANCE',
   });
   console.log(quote);
   if (quote.createdTime) {
     if (quote.rate > 0.85) {
-      let conversionTransaction = await TwClient.convertCurrencies({
-        borderlessAccountId,
+      let conversionTransaction = await wiseClient.convertCurrenciesV2({
+        profileId,
         quoteId: quote.id,
       });
       console.log(conversionTransaction);

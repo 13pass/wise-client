@@ -1,18 +1,18 @@
 const config = require('dotenv').config();
-const Transferwise = require('transferwise');
+const Wise = require('transferwise');
 
 const options = {
-  apiKey: config.parsed.TW_API_KEY,
-  //sandbox: true,
+  apiTokenKey: config.parsed.WISE_API_TOKEN_KEY,
 };
 
-const TwClient = new Transferwise(options);
+const wiseClient = new Wise(options);
 
 (async () => {
-  let profiles = await TwClient.getProfiles({});
-  console.log(profiles);
-  let profileId = profiles[0].id;
-  let recipientAccount = await TwClient.createRecipientAccount({
+  const profiles = await wiseClient.getProfilesV2();
+  console.log('profiles', profiles);
+  const profileId = profiles[0].id;
+
+  const recipientAccount = await wiseClient.createRecipientAccountV1({
     profile: profileId,
     accountHolderName: 'Recipient user name',
     currency: 'EUR',
@@ -22,9 +22,14 @@ const TwClient = new Transferwise(options);
     },
   });
   console.log(recipientAccount);
-  let recipientAccounts = await TwClient.getRecipientAccounts({
-    profile: profileId,
+  const recipientAccounts = await wiseClient.getRecipientAccountsV1({
+    profileId,
     currency: 'EUR',
   });
   console.log(recipientAccounts);
+  if (recipientAccount.id) {
+    await wiseClient.deleteRecipientAccountV1({
+      accountId: recipientAccount.id,
+    });
+  }
 })();

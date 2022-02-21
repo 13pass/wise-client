@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1 - 2022-02-21
+
+- Change the name of the package back to `transferwise` since `wise` is not available.
+
 ## 2.0.0 - 2022-02-21
 
 - Total rework of the transferwise client

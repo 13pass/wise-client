@@ -20,10 +20,10 @@ This does not cover all Transferwise's API yet, but this repository will hopeful
 To init juste plug in your apiKey like so:
 
 ```javascript
-const Transferwise = require('transferwise');
+const Wise = require('transferwise');
 
-const TwClient = new Transferwise({
-  apiKey: '01234567-890a-bcde-f012-3456789abcde',
+const wiseClient = new Transferwise({
+  apiTokenKey: '01234567-890a-bcde-f012-3456789abcde',
 });
 ```
 

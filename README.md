@@ -1,7 +1,8 @@
 # Transferwise API Client
 
-A simple client for Transferwise's API written in Node JS (ES7)
-Official docs are found [here](https://api-docs.transferwise.com);
+A simple client for Wise's API written in Node JS (ES7).
+
+Official docs are found [here](https://api-docs.wise.com/);
 
 ## Installation
 
@@ -15,9 +16,9 @@ or clone repo and make link:
 
 ## Usage
 
-This does not cover all Transferwise's API yet, but this repository will hopefully be updated to reflect the API.
+This does not cover all Wise's API yet, but this repository will hopefully be updated to reflect the API.
 
-To init juste plug in your apiKey like so:
+To init just plug in your apiTokenKey like so:
 
 ```javascript
 const Wise = require('transferwise');

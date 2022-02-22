@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.0.3 - 2022-02-22
+
+- Rename github repository from `transferwise-client` to `wise-client`
+- Rename `TransferWise` to `Wise` in README.md file
+- Rename `TransferWise` to `Wise` in package.json file
+
 ## 2.0.2 - 2022-02-21
 
 - Correct README.md Usage part.

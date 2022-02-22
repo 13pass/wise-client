@@ -1,4 +1,4 @@
-# Transferwise API Client
+# Wise API Client
 
 A simple client for Wise's API written in Node JS (ES7).
 
@@ -12,7 +12,7 @@ To install simply use npm or clone repo:
 
 or clone repo and make link:
 
-`$> git clone git@github.com:13pass/transferwise-client.git`
+`$> git clone git@github.com:13pass/wise-client.git`
 
 ## Usage
 
@@ -23,7 +23,7 @@ To init just plug in your apiTokenKey like so:
 ```javascript
 const Wise = require('transferwise');
 
-const wiseClient = new Transferwise({
+const wiseClient = new Wise({
   apiTokenKey: '01234567-890a-bcde-f012-3456789abcde',
 });
 ```

@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/13pass/transferwise-client.git"
+    "url": "git+https://github.com/13pass/wise-client.git"
   },
   "keywords": [
     "wise",
@@ -37,9 +37,9 @@
   "author": "Vincent HETRU",
   "license": "Mozilla Public License 2.0",
   "bugs": {
-    "url": "https://github.com/13pass/transferwise-client/issues"
+    "url": "https://github.com/13pass/wise-client/issues"
   },
-  "homepage": "https://github.com/13pass/transferwise-client#readme",
+  "homepage": "https://github.com/13pass/wise-client#readme",
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",

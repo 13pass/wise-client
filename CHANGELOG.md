@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2.0.5 - 2022-05-23
+
+- Fix method convertCurrenciesV2 by adding header `X-Idempotence-Uuid` to request
+
+## 2.0.4 - 2019-03-12
+
+- Upgrade dependency minimist package from v1.2.5 to v1.2.6
+
 ## 2.0.3 - 2022-02-22
 
 - Rename github repository from `transferwise-client` to `wise-client`

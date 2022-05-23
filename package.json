@@ -1,6 +1,6 @@
 {
   "name": "transferwise",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A simple client for Wise's API written in Node JS (ES7)",
   "main": "lib/Wise.js",
   "engines": {

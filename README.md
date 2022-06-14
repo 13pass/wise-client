@@ -51,29 +51,10 @@ const wiseClient = new Wise(options);
   let profiles = await wiseClient.getProfilesV2({});
   console.log(profiles);
   const profileId = profiles[0].id;
-  let accounts = await wiseClient.getBorderlessAccounts({
+  let balances = await wiseClient.getBalancesV3({
     profileId,
   });
-  let borderlessAccountId = accounts[0].id;
-  for (const balance of accounts[0].balances) {
-    console.log(balance);
-  }
-  let quote = await wiseClient.createQuoteV2({
-    profileId,
-    sourceCurrency: 'EUR',
-    targetCurrency: 'GBP',
-    targetAmount: 19.84,
-    payOut: 'BALANCE',
-  });
-  console.log(quote);
-  if (quote.createdTime) {
-    if (quote.rate > 0.85) {
-      let conversionTransaction = await wiseClient.convertCurrenciesV2({
-        profileId,
-        quoteId: quote.id,
-      });
-      console.log(conversionTransaction);
-    }
-  }
+
+  res.send(balances);
 })();
 ```

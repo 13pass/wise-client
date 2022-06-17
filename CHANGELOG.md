@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.0.6 - 2022-06-17
+
+- Add .idea to gitignore
+- Replace getBorderlessAccounts by getBalancesV3 to fix README.md file
+- Capitalize name of each API section
+- add method getExchangeRatesV1 to class WiseClient
+
 ## 2.0.5 - 2022-05-23
 
 - Fix method convertCurrenciesV2 by adding header `X-Idempotence-Uuid` to request

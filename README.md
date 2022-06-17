@@ -48,14 +48,13 @@ const options = {
 const wiseClient = new Wise(options);
 
 (async () => {
-  let profiles = await wiseClient.getProfilesV2({});
+  const profiles = await wiseClient.getProfilesV2({});
   console.log(profiles);
   const profileId = profiles[0].id;
-  let accounts = await wiseClient.getBorderlessAccounts({
+  const balances = await wiseClient.getBalancesV3({
     profileId,
   });
-  let borderlessAccountId = accounts[0].id;
-  for (const balance of accounts[0].balances) {
+  for (const balance of balances) {
     console.log(balance);
   }
   let quote = await wiseClient.createQuoteV2({

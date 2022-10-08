@@ -1,15 +1,19 @@
 # CHANGELOG
 
+## 2.0.7 - 2022-10-08
+
+- Add method `createQuoteV3` to create a quote for a profile
+
 ## 2.0.6 - 2022-06-17
 
 - Add .idea to gitignore
-- Replace getBorderlessAccounts by getBalancesV3 to fix README.md file
+- Replace `getBorderlessAccounts` by `getBalancesV3` to fix README.md file
 - Capitalize name of each API section
-- add method getExchangeRatesV1 to class WiseClient
+- add method `getExchangeRatesV1` to class WiseClient
 
-## 2.0.5 - 2022-05-23
+## 2.0.5 - 2022-05-2`
 
-- Fix method convertCurrenciesV2 by adding header `X-Idempotence-Uuid` to request
+- Fix method `convertCurrenciesV2` by adding header `X-Idempotence-Uuid` to request
 
 ## 2.0.4 - 2019-03-12
 
@@ -35,6 +39,6 @@
   - Add CHANGELOG.md file.
   - Add tests using jest.
   - Change the name of the package in consequence of the name of the service from `transferwise` to `wise`.
-  - Add support for [strong-customer-authentication](https://api-docs.transferwise.com/#strong-customer-authentication) using option scaPrivateKey.
+  - Add support for [strong-customer-authentication](https://api-docs.transferwise.com/#strong-customer-authentication) using option `scaPrivateKey`.
   - Upgrade API endpoints calls to use its newer versions.
   - Upgrade to node LTS version 16.

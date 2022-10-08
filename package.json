@@ -4,7 +4,7 @@
   "description": "A simple client for Wise's API written in Node JS (ES7)",
   "main": "lib/Wise.js",
   "engines": {
-    "node": "16",
+    "node": ">=16",
     "npm": "7"
   },
   "jest": {

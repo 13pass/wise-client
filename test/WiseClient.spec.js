@@ -133,6 +133,48 @@ describe('WiseClient Class', () => {
         preferredPayIn: null,
       });
     });
+
+    test('createQuoteV3 should make a POST request with the right parameters', async () => {
+      const createStub = {
+        post: (url) => {
+          return {};
+        },
+      };
+      const spyGet = jest.spyOn(createStub, 'post');
+      const axiosStub = {
+        // eslint-disable-next-line require-await
+        create: () => {
+          return createStub;
+        },
+      };
+      const wiseClient = new WiseClient({
+        apiTokenKey: 'apiTokenKey',
+        deps: {axios: axiosStub},
+      });
+      expect(spyGet).toHaveBeenCalledTimes(0);
+      const profileId = 123456;
+      await wiseClient.createQuoteV3({
+        sourceCurrency: 'EUR',
+        targetCurrency: 'USD',
+        sourceAmount: 100,
+        targetAmount: null,
+        profileId,
+        payOut: null,
+        preferredPayIn: null,
+      });
+      expect(spyGet).toHaveBeenCalledTimes(1);
+      expect(spyGet).toHaveBeenLastCalledWith(
+        `/v3/profiles/${profileId}/quotes`,
+        {
+          sourceCurrency: 'EUR',
+          targetCurrency: 'USD',
+          sourceAmount: 100,
+          targetAmount: null,
+          payOut: null,
+          preferredPayIn: null,
+        }
+      );
+    });
   });
 
   describe('Recipient accounts', () => {

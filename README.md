@@ -1,5 +1,7 @@
 # Wise API Client
 
+**Important Update**: *Due to recent changes announced by Wise regarding their API functionality, specifically in alignment with the Payment Services Directives (PSD2), certain features previously available through this client might no longer be supported. Specifically, the use of signing API requests for completing strong customer authentication on personal Wise accounts, retrieving account statements, and funding payments via the API have been disabled. While draft transfers can still be created through the API, they must now be funded directly from your multi-currency account using the Wise website or mobile applications. In light of these changes, this repository may not receive further updates.*
+
 A simple client for Wise's API written in Node JS (ES7).
 
 Official docs are found [here](https://api-docs.wise.com/);

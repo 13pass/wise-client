@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.1.0 - 2025-04-17
+## 2.1.1 - 2025-04-17
 
 - update method `getExchangeRatesV1` to reflect changes on [Wise API](https://docs.wise.com/api-docs/api-reference/rate) by merging work done by [Ryan Sadler](https://github.com/rrx)
 - upgrade a bunch of dependencies

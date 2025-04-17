@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.1.0 - 2025-04-17
+
+- update method `getExchangeRatesV1` to reflect changes on [Wise API](https://docs.wise.com/api-docs/api-reference/rate) by merging work done by [Ryan Sadler](https://github.com/rrx)
+- upgrade a bunch of dependencies
+
 ## 2.0.7 - 2022-10-08
 
 - Add method `createQuoteV3` to create a quote for a profile

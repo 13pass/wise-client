@@ -4,8 +4,7 @@
   "description": "A simple client for Wise's API written in Node JS (ES7)",
   "main": "lib/Wise.js",
   "engines": {
-    "node": ">=16",
-    "npm": "7"
+    "node": ">=16"
   },
   "jest": {
     "bail": false,
@@ -35,7 +34,7 @@
     "client"
   ],
   "author": "Vincent HETRU",
-  "license": "Mozilla Public License 2.0",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/13pass/wise-client/issues"
   },
@@ -54,7 +53,8 @@
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "prettier": "^3.5.3",
-    "pretty-quick": "^4.1.1"
+    "pretty-quick": "^4.1.1",
+    "typescript": "^5.8.3"
   },
   "husky": {
     "hooks": {

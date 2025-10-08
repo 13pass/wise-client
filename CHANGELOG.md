@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.2.0 - 2025-10-08
+
+- update prod API url to reflect changes on [Wise API](https://docs.wise.com/api-docs/api-reference/environments)
+- upgrade dependency axios
+
 ## 2.1.1 - 2025-04-17
 
 - update method `getExchangeRatesV1` to reflect changes on [Wise API](https://docs.wise.com/api-docs/api-reference/rate) by merging work done by [Ryan Sadler](https://github.com/rrx)
